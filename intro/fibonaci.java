@@ -7,16 +7,18 @@ public class fibonaci {
 
     public static int fibonaciseries(int number){
 
-        int last=0;
-        int secondlast=1;
+        
+        int secondlast=0;
+        int last=1;
         int ans= 0;
 
         for(int i=2;i<=number;i++){
 
              ans= last+secondlast;
+             secondlast = last;
+            last = ans;
             
-             secondlast = ans;
-             last = secondlast;
+           
              System.out.println(ans);
             
            
