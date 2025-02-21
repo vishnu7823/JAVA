@@ -11,7 +11,7 @@ public class fibonaci {
         int secondlast=1;
         int ans= 0;
 
-        for(int i=3;i<=number;i++){
+        for(int i=2;i<=number;i++){
 
              ans= last+secondlast;
             
