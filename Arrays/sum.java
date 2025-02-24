@@ -9,12 +9,8 @@ public class sum{
 
         int currentvalue =0;
         for(int i=0;i<arr.length;i++){
-            if(arr.length!=0){
+            
                 currentvalue +=arr[i];
-
-
-
-            }
         }
         return currentvalue;
 
