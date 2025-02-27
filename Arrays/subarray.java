@@ -24,4 +24,8 @@ public class subarray {
         }
 
     }
+
+    public static void printsum(){
+        
+    }
 }
