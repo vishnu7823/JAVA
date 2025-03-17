@@ -4,63 +4,75 @@ import java.util.Arrays;
 
 public class q3 {
     public static void main(String[] args) {
-        int[] array ={2, 1, 4, 3, 8, 5, 10, 12, 11, 24, 18};
-        mergesort(array, 0, 10);
-        System.out.println(Arrays.toString(array));
+        int[] arr = {5,4,3,2,1};
+        arr = mergesort(arr);
+        System.out.println(Arrays.toString(arr));
         
     }
 
-    public static void mergesort(int[] arr,int low,int high){
-
-        if(low>=high){
-            return;
-        }
-
-        int mid = low+(high-low)/2;
-
-        mergesort(arr, low, mid);
-        mergesort(arr, mid+1, high);
-
-        merge(arr, low,mid,mid+1,high);
-
     
 
-    }
-
-    public static void merge(int[] arr,int low1,int high1,int low2,int high2){
-
-        int[] newArray = new int[high2-low1+1];
-
-        int index1 = low1;
-        int index2 = low2;
-        int index =0;
-
-
-        while(index<newArray.length){
-
-            if(index1>=high1){
-                newArray[index] = arr[index2];
-                index2++;
-                index++;
-                continue;
-            }
-         if(index2>=high2){
-                newArray[index] = arr[index1];
-                index1++;
-                index++;
-                continue;
-            }
-            
-            if(arr[index1]>arr[index2]){
-                arr[index] = arr[index2];
-                index2++;
-                index++;
-            }else{
-                arr[index] = arr[index1];
-                index1++;
-                index++;
-            }
+    public static int[] mergesort(int[] arr){
+        if(arr.length==1){
+            return arr;
         }
 
+        int mid = arr.length/2;
+
+        int[] left = new int[mid];
+        int[] right = new int[arr.length-mid];
+
+       for(int i=0;i<mid;i++){  //use to copy the left subarray
+        left[i] = arr[i];
+       }
+
+       for(int j=mid;j<arr.length;j++){ //use to cpy the right sub array
+        right[j-mid] = arr[j];
+       }
+
+       left = mergesort(left);
+       right = mergesort(right);
+        
+
+        return merge(left,right);
+
+
+
+       
+
+    }
+    public static int[] merge(int[] first,int[] second){
+        int[] newarr = new int[first.length + second.length];
+
+        int i=0;
+        int j=0;
+        int k=0;
+
+        while(i<first.length && j<second.length){
+            if(first[i]<second[j]){
+                newarr[k] = first[i];
+                i++;
+            }else{
+                newarr[k] = second[j];
+                j++;
+            }
+            k++;
+        }
+
+        //what if there are some elements still remaining
+        //these two loops will work like either or condition
+        while(i<first.length){
+            newarr[k] = first[i];
+            i++;
+            k++;
+        }
+
+        while(j<second.length){
+            newarr[k] = second[j];
+            j++;
+            k++;
+        }
+
+        return newarr;
     }
 }
