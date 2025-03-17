@@ -17,31 +17,40 @@ public class q1 {
         if(start>=end){
             return ;
         }
-      int mid = start+(end-start)/2;
+      
+      //partition:
+      int pivot = partition(arr, start, end);
+
+      sort(arr,start,pivot-1);
+      sort(arr,pivot+1,end);
+
+
+
+    }
+
+    public static int partition(int[]arr, int start, int end){
+
+        int left = start;
+        int right  =end;
+        int mid = start+(end-start)/2;
       int pivot = arr[mid];
 
-      while(start<=end){
-        while(arr[start]<pivot){
-            start++;
+      while(left<=right){
+        while(arr[left]<pivot){
+            left++;
         }
-        while(arr[end]>pivot){
-            end--;
+        while(arr[right]>pivot){
+            right--;
         }
-        if(start<=end){
-            int temp = arr[start];
-            arr[start] = arr[end];
-            arr[end] = temp;
-            start++;
-            end--;
+        if(left<=right){
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
         }
       }
-      //now pivot is at correct position then sort the two halves of the array
-
-      sort(arr,start,end);
-      sort(arr,start,end);
-
-
-
+      return left; //partion index
     }
 
     

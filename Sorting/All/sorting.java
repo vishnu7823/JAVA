@@ -7,12 +7,14 @@ public class sorting {
         System.out.println("All sorting techniques under brutforce approach");
         int[] arr = {2, 1, 4, 3, 8, 5, 10, 12, 11, 24, 18};
         //mergesort
-        arr = mergesort(arr);
         System.out.print("mergesort:");
+        
+        arr = mergesort(arr);
         System.out.println(Arrays.toString(arr));
         //bubblesort
-        arr= bubblesort(arr);
         System.out.print("bubblesort:");
+        
+        arr= bubblesort(arr);
         System.out.println(Arrays.toString(arr));
         //selection sort
         arr= selectionsort(arr);
@@ -21,6 +23,10 @@ public class sorting {
         //insertionsort
          arr= insertionsort(arr);
         System.out.print("insertionsort:");
+        System.out.println(Arrays.toString(arr));
+        //quicksort
+        quicksort(arr, 0, arr.length-1);
+        System.out.print("quicksort:");
         System.out.println(Arrays.toString(arr));
         
     
@@ -126,6 +132,42 @@ public class sorting {
             
         }
         return arr;
+    }
+
+    //quicksort
+    public static void quicksort(int[] arr,int low,int high){
+        if(low>=high){
+            return;
+        }
+        int pivot = partition(arr, low, high);
+
+        quicksort(arr, low, pivot-1);
+        quicksort(arr, pivot+1, high);
+          
+    }
+
+    public static int partition(int[] arr,int start,int end){
+        int mid = start+(end-start)/2;
+        int pivot = arr[mid];
+        int left = start;
+        int right = end;
+        while(left<=right){
+            while(arr[left]<pivot){
+                left++;
+            }
+            while(arr[right]>pivot){
+                right--;
+            }
+
+            if(left<=right){
+                swap(arr, left, right);
+                left++;
+                right--;
+            }
+
+
+        }
+        return left;
     }
     
     //common swap methoid for all uses
