@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class q1 {
     public static void main(String[] args) {
-        int[] array = { 5,4,3,2,1};
+        int[] array = { 2, 1, 4, 3, 8, 5, 10, 12, 11, 24, 18};
         selectionsort(array);
         System.out.println(Arrays.toString((array)));
         
@@ -13,16 +13,18 @@ public class q1 {
 
     public static void selectionsort(int[] arr){
         
-       int min =arr[0];
+       
        for(int i=0;i<arr.length-1;i++){
+        int min = i;
 
         for(int j=i+1;j<arr.length;j++){
-            if(arr[j]<min){
-                min = arr[j];
+            if(arr[j]<arr[min]){
+                min = j;
             }
-            swap(arr, i, j);
+          
 
         }
+        swap(arr, i, min);
        }
     }
 
