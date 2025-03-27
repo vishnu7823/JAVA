@@ -37,9 +37,10 @@ public class q1 {
         public int pop(){
             if(list.size()==0){
                return -1; 
-            }else{
-                return list.remove(list.size()-1);
-            }
+            } 
+            int element = this.peek();
+            list.remove(list.size()-1);
+            return element;
 
         }
 
